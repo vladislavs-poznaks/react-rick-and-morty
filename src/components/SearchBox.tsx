@@ -1,13 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import {CharacterType} from "./types/CharacterType";
 import {Link} from "react-router-dom";
 import axios from "axios";
 
 const SearchBox = () => {
 
+    const inputEl = useRef<HTMLInputElement>(null);
     const [query, setQuery] = useState('');
     const [characters, setCharacters] = useState<CharacterType[]>([]);
     const [noResults, setNoResults] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('keypress', (e) => {
+            if (e.key === '/') {
+                e.preventDefault()
+                inputEl.current?.focus()
+            }
+        })
+    }, [])
 
     useEffect(() => {
         query.length > 2 ? getCharacters() : setCharacters([]);
@@ -34,11 +44,10 @@ const SearchBox = () => {
             <div className="relative">
                 <input
                     className="bg-gray-800 text-sm rounded-full focus:outline-none focus:shadow-outline w-64 px-3 pl-8 py-1"
-                    placeholder="Search for character ..."
+                    placeholder="Search (press '/' to focus...)"
+                    ref={inputEl}
                     value={query}
-                    onChange={(e) => {
-                        setQuery(e.target.value)
-                    }}
+                    onChange={(e) => setQuery(e.target.value)}
                 />
                 <div className="absolute top-0 flex items-center h-full ml-2">
                     <svg

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import './styles/main.css';
 import Index from "./components/pages/character/Index";
 import Show from "./components/pages/character/Show";
