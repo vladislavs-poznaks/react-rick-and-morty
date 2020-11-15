@@ -20,7 +20,12 @@ const SearchBox = () => {
     }, [])
 
     useEffect(() => {
-        query.length > 2 ? getCharacters() : setCharacters([]);
+        if (query.length > 2) {
+            getCharacters();
+        } else {
+            setCharacters([]);
+            setNoResults(false);
+        }
     }, [query])
 
     const getCharacters = () => {
