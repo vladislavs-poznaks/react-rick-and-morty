@@ -26,10 +26,6 @@ const App = () => {
                                     src="/images/rick-and-morty-logo.png"
                                     alt="logo"/>
                             </Link>
-                            {/*<nav className="flex text-2xl font-semibold space-x-2">*/}
-                            {/*    <Link to="/">Index</Link>*/}
-                            {/*    <Link to="/about">About</Link>*/}
-                            {/*</nav>*/}
                         </div>
 
                         <div className="flex items-center mt-6 lg:mt-0">
